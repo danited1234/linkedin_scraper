@@ -1,0 +1,20 @@
+[project]
+name = "LinkdOutScraper"
+version = "0.0.1"
+authors = [
+  { name="Ahmad Hassan", email="ahmadhassan2228@gmail.com" },
+]
+description = "Linkedin Scraper"
+readme = "README.md"
+requires-python = ">=3"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [ "bs4", "requests","selenium" ]
+[project.urls]
+Homepage = "https://github.com/danited1234/linkedin_scraper/"
+Issues = "https://github.com/danited1234/linkedin_scraper/issues"
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

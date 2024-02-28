@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: LinkdOutScraper
+Version: 0.0.1
+Summary: Linkedin Scraper
+Author-email: Ahmad Hassan <ahmadhassan2228@gmail.com>
+Project-URL: Homepage, https://github.com/danited1234/linkedin_scraper/
+Project-URL: Issues, https://github.com/danited1234/linkedin_scraper/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: bs4
+Requires-Dist: requests
+Requires-Dist: selenium
+
+# Linkedin Scraper
+
+LinkdOutScraper is a Python library for scraping data from Linkedin
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install LinkedOutScraper.
+
+```bash
+pip install LinkedOutScraper
+```
+
+## Scrape Multiple Profiles With A Single Keyword
+
+```python
+from LinkedOutScraper import key_search
+file_path= "somefile/path/with/csv/extension"
+search = key_search.MultiProfiles(username="someusername@example.com",password="password",headless=True,file_path=file_path)
+search.login()
+profiles = search.get_mulitple_profiles("Google")
+
+```
+
+## Scrape Multiple Profiles With A Single Keyword
+
+```python
+from LinkedOutScraper import profile_scraper
+search = profile_scarper.Linkedin(username="someusername@example.com",password="password")
+search.login()
+profiles = search.get_profiles("https://www.linkedin.com/in/muzammal-akram/")
+for variables in profiles:
+    print(variables)
+```
