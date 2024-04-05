@@ -47,8 +47,8 @@ class JobSearch(Linkedin):
         div_element = self.driver.find_element(By.CLASS_NAME,scrollable_div)
         scroll_height = self.driver.execute_script("return arguments[0].scrollHeight",div_element)
 
-        # Define the scroll speed (in seconds) - adjust as needed
-        scroll_speed = 0.5  # Example: scroll 0.5 seconds per scroll action
+        # Define the scroll speed (in seconds)
+        scroll_speed = 0.5  #scroll 0.5 seconds per scroll action
 
         # Calculate the number of scroll steps
         num_steps = int(scroll_height / (div_element.size['height'] * 0.5))
@@ -76,6 +76,7 @@ class JobSearch(Linkedin):
         Example Usage
         `.find_jobs("Junior Web Developer")`
         """
+        jobs = []
         url = f"https://www.linkedin.com/jobs/?keywords={query}"
         self.driver.get(url)
         try:
@@ -93,11 +94,17 @@ class JobSearch(Linkedin):
             link = f"{current_url}&start={i}" 
             try:
                 self.get_jobs_content(link, count)
+                # return job_url, job_title, company_name, location
             except Exception as e:
                 break
+            
 
+    def get_jobs_content(self, links: str, count: int = None) -> None:  
+        # job_urls = []
+        # job_titles = []
+        # company_names = []
+        # locations = []
 
-    def get_jobs_content(self, links: str, count: int = None) -> tuple:       
         print(f"Scraping Page {count}")
         if count == 1:
             pass
@@ -131,7 +138,6 @@ class JobSearch(Linkedin):
                 self.save_job_data(self.file_path,job_url,job_title,company_name,location)
                 print("Saving Data To File")
             else:
-                return job_url, job_title, company_name, location
-                # print("---------------------------------------------------")
-                # print(f"{job_url}\n{job_title}\n{company_name}\n{location}")
-                # print("---------------------------------------------------")
+                print("---------------------------------------------------")
+                print(f"{job_url}\n{job_title}\n{company_name}\n{location}")
+                print("---------------------------------------------------")
