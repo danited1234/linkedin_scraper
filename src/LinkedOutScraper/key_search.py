@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import sys
 
-from .profile_scarper import Linkedin
+from .profile_scraper import Linkedin
 
 class MultiProfiles(Linkedin):
     """
@@ -11,7 +11,6 @@ class MultiProfiles(Linkedin):
     * password ( str ) Password Of Linkedin
     * headless ( str ) Set to True if you want to go headless
     * file_path ( str ) file path of the csv file if you want to save results into a csv file
-
     """
 
     def __init__(self, username: str = None,
@@ -19,7 +18,9 @@ class MultiProfiles(Linkedin):
                   file_path: str = None) -> None:
         super().__init__(username, password,headless)
         self.file_path = file_path
-    def find_profile_information(self,source_code):
+
+
+    def find_profile_information(self,source_code) -> None:
         soup = BeautifulSoup(source_code,'html.parser')
         profile_containers = soup.find_all('div', class_='mb1')
 
@@ -37,14 +38,14 @@ class MultiProfiles(Linkedin):
 
             # Extract location
             location = profile.find('div', class_='entity-result__secondary-subtitle').text.strip()
-            if self.file_path != None:
+            if self.file_path is not None:
                 self.save_data(self.file_path,linkedin_url,linkedin_member_name,job_title,location)
             else:
                 print("---------------------------------------------------")
                 print(f"{linkedin_member_name}\n{linkedin_url}\n{job_title}\n{location}")
                 print("---------------------------------------------------")
         
-    def get_mulitple_profiles(self,keyword:str):
+    def get_multiple_profiles(self,keyword:str) -> None:
         """
         main function that scrapes linkedin searches based on a keyword
         #### Arguments
@@ -69,4 +70,5 @@ class MultiProfiles(Linkedin):
                 sys.exit(1) #exit and close the script if there are no pages left to scrape
             print(f"Scrapping Page Number {i}")
             self.find_profile_information(src)
+
 
