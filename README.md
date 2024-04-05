@@ -17,11 +17,11 @@ from LinkedOutScraper import key_search
 file_path= "somefile/path/with/csv/extension"
 search = key_search.MultiProfiles(username="someusername@example.com",password="password",headless=True,file_path=file_path)
 search.login()
-profiles = search.get_mulitple_profiles("Google")
+profiles = search.get_multiple_profiles("Google")
 
 ```
 
-## Scrape Multiple Profiles With A Single Keyword
+## Scrape A Single Profile Using Their Profile Link
 
 ```python
 from LinkedOutScraper import profile_scraper
@@ -30,4 +30,15 @@ search.login()
 profiles = search.get_profiles("https://www.linkedin.com/in/muzammal-akram/")
 for variables in profiles:
     print(variables)
+```
+
+## Scrape Job Results By Entering A Query
+
+```python
+from LinkedOutScraper import job_search
+search = job_search.JobSearch("someusername@example","password")
+search.login()
+jobs = search.find_jobs("Senior Python Developer")
+for job in jobs:
+    print(jobs)
 ```
