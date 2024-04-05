@@ -38,7 +38,5 @@ for variables in profiles:
 from LinkedOutScraper import job_search
 search = job_search.JobSearch("someusername@example","password")
 search.login()
-jobs = search.find_jobs("Senior Python Developer")
-for job in jobs:
-    print(jobs)
+search.find_jobs("Senior Python Developer")
 ```
